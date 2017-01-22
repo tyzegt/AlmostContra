@@ -283,9 +283,10 @@ public class PlayerController : MonoBehaviour {
             animators[i].SetBool("OnGround", onGround);
             animators[i].SetBool("Jumped", jumped);
             animators[i].SetBool("Moving", moving);
+            animators[i].SetBool("Shooting", KeyAction);
             animators[i].SetFloat("VSP", vsp);
+            animators[i].SetInteger("Direction", direction);
         }
-
     }
 
     // С
