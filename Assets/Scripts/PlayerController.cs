@@ -16,6 +16,9 @@ public class PlayerController : MonoBehaviour {
     public float[] shootAngles;
     private Quaternion rot;
 
+    private Transform currentShootPoint;
+    public Transform[] shootPoints;
+
 
     public int direction;
 
@@ -55,7 +58,6 @@ public class PlayerController : MonoBehaviour {
         animators = GetComponentsInChildren<Animator>();
         shootDelayCounter = 0;
         rot = new Quaternion(0,0,0,0);
-
     }
 	
 	void Update () {
@@ -75,6 +77,7 @@ public class PlayerController : MonoBehaviour {
         GetInput();
         CalculateDirection();
         CalculateShootAngles();
+        CalculateShootPoint();
         Animate();
         Move();
         Shoot();
@@ -198,7 +201,7 @@ public class PlayerController : MonoBehaviour {
         {
             if((currentProjectile == basicProjectile) && FindObjectsOfType<Projectile>().Length < 4)
             {
-                Instantiate(currentProjectile, transform.position, rot);
+                Instantiate(currentProjectile, currentShootPoint.position, rot);
                 shootDelayCounter = shootDelay;
             }
             
@@ -228,6 +231,17 @@ public class PlayerController : MonoBehaviour {
             else direction = 4;
         }
 
+    }
+
+    // Вычислить точку для стрельбы
+    void CalculateShootPoint()
+    {
+        if (onGround && direction == 8) currentShootPoint = shootPoints[0];
+        if (onGround && (direction == 9 || direction == 7)) currentShootPoint = shootPoints[1];
+        if (onGround && (direction == 4 || direction == 6)) currentShootPoint = shootPoints[2];
+        if (onGround && (direction == 1 || direction == 3)) currentShootPoint = shootPoints[3];
+        if (onGround && KeyDown) currentShootPoint = shootPoints[4];
+        if (jumped) currentShootPoint = transform;
     }
 
     // Рассчитать углы стрельбы
@@ -284,8 +298,10 @@ public class PlayerController : MonoBehaviour {
             animators[i].SetBool("Jumped", jumped);
             animators[i].SetBool("Moving", moving);
             animators[i].SetBool("Shooting", KeyAction);
+            animators[i].SetBool("KeyDown", KeyDown);
             animators[i].SetFloat("VSP", vsp);
             animators[i].SetInteger("Direction", direction);
+
         }
     }
 
