@@ -6,10 +6,17 @@ public class PlayerController : MonoBehaviour {
     private GameObject currentProjectile;
     public GameObject basicProjectile;
 
+    private BoxCollider2D myColl;
+
     public float moveSpeed;
     public float jumpHeight;
     public float gravity;
     public float shootDelay;
+
+    private float originColliderSize;
+    private float originColliderOffset;
+    public float duckColliderSize;
+    public float duckColliderOffset;
 
     public float pixelSize;
 
@@ -58,6 +65,9 @@ public class PlayerController : MonoBehaviour {
         animators = GetComponentsInChildren<Animator>();
         shootDelayCounter = 0;
         rot = new Quaternion(0,0,0,0);
+        myColl = GetComponent<BoxCollider2D>();
+        originColliderSize = myColl.size.y;
+        originColliderOffset = myColl.offset.y;
     }
 	
 	void Update () {
@@ -75,6 +85,18 @@ public class PlayerController : MonoBehaviour {
         obsticleOnLeft = CheckCollision(topLeft, Vector2.left, pixelSize, solid) || CheckCollision(botLeft, Vector2.left, pixelSize, solid);
 
         GetInput();
+
+        if(onGround && KeyDown)
+        {
+            myColl.size = new Vector2(myColl.size.x, duckColliderSize);
+            myColl.offset = new Vector2(myColl.offset.x, duckColliderOffset);
+        } else
+        {
+            myColl.size = new Vector2(myColl.size.x, originColliderSize);
+            myColl.offset = new Vector2(myColl.offset.x, originColliderOffset);
+
+        }
+
         CalculateDirection();
         CalculateShootAngles();
         CalculateShootPoint();
@@ -241,6 +263,7 @@ public class PlayerController : MonoBehaviour {
         if (onGround && (direction == 4 || direction == 6)) currentShootPoint = shootPoints[2];
         if (onGround && (direction == 1 || direction == 3)) currentShootPoint = shootPoints[3];
         if (onGround && KeyDown) currentShootPoint = shootPoints[4];
+        if (!onGround && KeyDown) currentShootPoint = shootPoints[2];
         if (jumped) currentShootPoint = transform;
     }
 
