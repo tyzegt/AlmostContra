@@ -259,10 +259,10 @@ public class PlayerController : MonoBehaviour {
     void CalculateShootPoint()
     {
         if (onGround && direction == 8) currentShootPoint = shootPoints[0];
-        if (onGround && (direction == 9 || direction == 7)) currentShootPoint = shootPoints[1];
-        if (onGround && (direction == 4 || direction == 6)) currentShootPoint = shootPoints[2];
-        if (onGround && (direction == 1 || direction == 3)) currentShootPoint = shootPoints[3];
-        if (onGround && KeyDown) currentShootPoint = shootPoints[4];
+        if (!jumped && (direction == 9 || direction == 7)) currentShootPoint = shootPoints[1];
+        if (!jumped && (direction == 4 || direction == 6)) currentShootPoint = shootPoints[2];
+        if (!jumped && (direction == 1 || direction == 3)) currentShootPoint = shootPoints[3];
+        if (!jumped && KeyDown) currentShootPoint = shootPoints[4];
         if (!onGround && KeyDown) currentShootPoint = shootPoints[2];
         if (jumped) currentShootPoint = transform;
     }
