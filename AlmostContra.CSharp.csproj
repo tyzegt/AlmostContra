@@ -64,6 +64,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\DestroyObjectOverTime.cs" />
+    <Compile Include="Assets\Scripts\EnemyDeathEffect.cs" />
     <Compile Include="Assets\Scripts\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\EnemyRunner.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
