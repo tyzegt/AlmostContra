@@ -1,12 +1,20 @@
 fileFormatVersion: 2
 guid: 92efe5b30099f1f458cf5f20f7e14980
-timeCreated: 1486746247
+timeCreated: 1489066886
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
     21300000: Enemies1_0
     21300002: Enemies1_1
     21300004: Enemies1_2
+    21300006: Enemies1_3
+    21300008: Enemies1_4
+    21300010: Enemies1_5
+    21300012: Enemies1_6
+    21300014: Enemies1_7
+    21300016: Enemies1_8
+    21300018: Enemies1_9
+    21300020: Enemies1_10
   serializedVersion: 2
   mipmaps:
     mipMapMode: 0
@@ -56,7 +64,7 @@ TextureImporter:
     - name: Enemies1_0
       rect:
         serializedVersion: 2
-        x: 6
+        x: 300
         y: 539
         width: 24
         height: 24
@@ -67,7 +75,7 @@ TextureImporter:
     - name: Enemies1_1
       rect:
         serializedVersion: 2
-        x: 2
+        x: 312
         y: 253
         width: 16
         height: 16
@@ -82,6 +90,108 @@ TextureImporter:
         y: 610
         width: 17
         height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Enemies1_3
+      rect:
+        serializedVersion: 2
+        x: 222
+        y: 610
+        width: 17
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Enemies1_4
+      rect:
+        serializedVersion: 2
+        x: 239
+        y: 610
+        width: 17
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Enemies1_5
+      rect:
+        serializedVersion: 2
+        x: 276
+        y: 610
+        width: 17
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Enemies1_6
+      rect:
+        serializedVersion: 2
+        x: 293
+        y: 610
+        width: 17
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Enemies1_7
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 6
+        width: 24
+        height: 24
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Enemies1_8
+      rect:
+        serializedVersion: 2
+        x: 274
+        y: 4
+        width: 28
+        height: 28
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+    - name: Enemies1_9
+      rect:
+        serializedVersion: 2
+        x: 240
+        y: 2
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline:
+      - - {x: -16, y: 0}
+        - {x: -16, y: -10}
+        - {x: -11, y: -16}
+        - {x: 11, y: -16}
+        - {x: 16, y: -11}
+        - {x: 16, y: 0}
+      - - {x: -12, y: 16}
+        - {x: -16, y: 12}
+        - {x: -16, y: 0}
+        - {x: -13, y: 1}
+        - {x: -3, y: 0}
+        - {x: 16, y: 0}
+        - {x: 16, y: 15}
+        - {x: 13, y: 16}
+    - name: Enemies1_10
+      rect:
+        serializedVersion: 2
+        x: 9
+        y: 170
+        width: 16
+        height: 14
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

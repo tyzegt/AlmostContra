@@ -12,6 +12,7 @@ public class EnemyRunner : MonoBehaviour {
     public LayerMask ground;
 
     private Rigidbody2D myBody;
+    private Animator myAnimator;
 
     public float moveSpeed;
     public float jumpHeight;
@@ -21,6 +22,7 @@ public class EnemyRunner : MonoBehaviour {
     // Use this for initialization
     void Start () {
         myBody = GetComponent<Rigidbody2D>();
+        myAnimator = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
@@ -37,9 +39,10 @@ public class EnemyRunner : MonoBehaviour {
         {
             reacted = false;
         }
-
+        
         // Двигаться
         myBody.velocity = new Vector2(moveSpeed * transform.localScale.x, myBody.velocity.y);
+        myAnimator.SetBool("OnGround", onGround);
     }
 
     // реакция на обрыв
