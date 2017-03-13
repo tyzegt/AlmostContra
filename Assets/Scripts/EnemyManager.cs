@@ -6,8 +6,6 @@ public class EnemyManager : MonoBehaviour {
     public int health;
     private int currentHealth;
 
-    public GameObject deathEffect;
-
 	// Use this for initialization
 	void Start () {
         currentHealth = health;
@@ -26,10 +24,6 @@ public class EnemyManager : MonoBehaviour {
     // Умереть
     public void Die()
     {
-        if(deathEffect != null)
-        {
-            Instantiate(deathEffect, transform.position, transform.rotation);
-        }
         Destroy(gameObject);
     }
 }
