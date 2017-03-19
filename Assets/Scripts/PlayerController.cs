@@ -5,6 +5,11 @@ public class PlayerController : MonoBehaviour {
 
     private GameObject currentProjectile;
     public GameObject basicProjectile;
+    public GameObject ProjectileM;
+    public GameObject ProjectileF;
+    public GameObject ProjectileS;
+    public GameObject ProjectileL;
+
 
     private BoxCollider2D myColl;
 
@@ -226,7 +231,12 @@ public class PlayerController : MonoBehaviour {
                 Instantiate(currentProjectile, currentShootPoint.position, rot);
                 shootDelayCounter = shootDelay;
             }
-            
+            if (currentProjectile == ProjectileM)
+            {
+                Instantiate(currentProjectile, currentShootPoint.position, rot);
+                shootDelayCounter = shootDelay;
+            }
+
         }
         shootDelayCounter -= Time.deltaTime;
     }
@@ -328,5 +338,33 @@ public class PlayerController : MonoBehaviour {
         }
     }
 
-    // С
+    // Сменить оружие
+    public void ChangeWeapon(int type)
+    {
+        /*
+        * 0 - R
+        * 1 - M
+        * 2 - F
+        * 3 - S
+        * 4 - L
+        */
+        switch (type)
+        {
+            case 0:
+                break;
+            case 1:
+                currentProjectile = ProjectileM;
+                break;
+            case 2:
+                currentProjectile = ProjectileF;
+                break;
+            case 3:
+                currentProjectile = ProjectileS;
+                break;
+            case 4:
+                currentProjectile = ProjectileL;
+                break;
+        }
+
+    }
 }
