@@ -236,6 +236,11 @@ public class PlayerController : MonoBehaviour {
                 Instantiate(currentProjectile, currentShootPoint.position, rot);
                 shootDelayCounter = shootDelay;
             }
+            if ((currentProjectile == ProjectileF) && FindObjectsOfType<Projectile>().Length < 4)
+            {
+                Instantiate(currentProjectile, currentShootPoint.position, rot);
+                shootDelayCounter = shootDelay;
+            }
 
         }
         shootDelayCounter -= Time.deltaTime;

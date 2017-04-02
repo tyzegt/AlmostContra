@@ -5,16 +5,19 @@ public class Projectile : MonoBehaviour {
 
     Rigidbody2D myRigidbody;
     public float movespeed;
+    public float spinningSpeed;
 
 	// Use this for initialization
 	void Start () {
         myRigidbody = GetComponent<Rigidbody2D>();
         myRigidbody.AddRelativeForce(Vector2.up * movespeed, ForceMode2D.Impulse);
+        myRigidbody.angularVelocity = spinningSpeed;
 	}
 	
 	void OnBecameInvisible()
     {
         Destroy(gameObject);
+        if (transform.parent.gameObject != null) Destroy(transform.parent.gameObject);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -25,6 +28,7 @@ public class Projectile : MonoBehaviour {
             {
                 other.GetComponent<EnemyManager>().TakeDamage();
                 Destroy(gameObject);
+                if (transform.parent.gameObject != null) Destroy(transform.parent.gameObject);
             }
         }
     }
