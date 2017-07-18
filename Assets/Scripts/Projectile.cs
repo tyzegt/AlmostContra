@@ -17,7 +17,7 @@ public class Projectile : MonoBehaviour {
 	void OnBecameInvisible()
     {
         Destroy(gameObject);
-        if (transform.parent.gameObject != null) Destroy(transform.parent.gameObject);
+        if (transform.parent != null) Destroy(transform.parent.gameObject);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -28,7 +28,7 @@ public class Projectile : MonoBehaviour {
             {
                 other.GetComponent<EnemyManager>().TakeDamage();
                 Destroy(gameObject);
-                if (transform.parent.gameObject != null) Destroy(transform.parent.gameObject);
+                if (transform.parent != null) Destroy(transform.parent.gameObject);
             }
         }
     }
