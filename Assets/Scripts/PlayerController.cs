@@ -246,6 +246,21 @@ public class PlayerController : MonoBehaviour {
                 Instantiate(currentProjectile, currentShootPoint.position, rot);
                 shootDelayCounter = shootDelay;
             }
+            if (currentProjectile == ProjectileL)
+            {
+                Projectile[] projectile = FindObjectsOfType<Projectile>();
+                foreach(Projectile p in projectile)
+                {
+                    Destroy(p.gameObject);
+                }
+                ProjectileLaserShell[] shells = FindObjectsOfType<ProjectileLaserShell>();
+                foreach (ProjectileLaserShell s in shells)
+                {
+                    Destroy(s.gameObject);
+                }
+                Instantiate(currentProjectile, currentShootPoint.position, rot);
+                shootDelayCounter = shootDelay;
+            }
 
         }
         shootDelayCounter -= Time.deltaTime;
