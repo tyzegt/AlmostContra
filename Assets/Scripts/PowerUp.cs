@@ -14,9 +14,15 @@ public class PowerUp : MonoBehaviour {
 
 	void OnTriggerEnter2D(Collider2D other)
     {
-        if(other.tag == "Player")
+        if(other.tag == "Player" && type != 0)
         {
             other.GetComponent<PlayerController>().ChangeWeapon(type);
+            Destroy(gameObject);
+        }
+
+        if (other.tag == "Player" && type == 0)
+        {
+            if (PlayerController.rapidsPicked < 2) PlayerController.rapidsPicked++;
             Destroy(gameObject);
         }
     }

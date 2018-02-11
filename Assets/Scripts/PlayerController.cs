@@ -13,6 +13,9 @@ public class PlayerController : MonoBehaviour {
 
     private BoxCollider2D myColl;
 
+    public static int rapidsPicked = 0;
+    public static float projectileSpeedKoeff = 2;
+
     public float moveSpeed;
     public float jumpHeight;
     public float gravity;

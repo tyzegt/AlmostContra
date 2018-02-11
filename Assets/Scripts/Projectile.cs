@@ -10,7 +10,7 @@ public class Projectile : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         myRigidbody = GetComponent<Rigidbody2D>();
-        myRigidbody.AddRelativeForce(Vector2.up * movespeed, ForceMode2D.Impulse);
+        myRigidbody.AddRelativeForce(Vector2.up * (movespeed + PlayerController.rapidsPicked*PlayerController.projectileSpeedKoeff), ForceMode2D.Impulse);
         myRigidbody.angularVelocity = spinningSpeed;
 	}
 	
