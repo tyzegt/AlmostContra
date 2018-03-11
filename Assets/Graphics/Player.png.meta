@@ -1,6 +1,6 @@
 fileFormatVersion: 2
 guid: 7ff5f50d690e3d24b8cbdbe819753aab
-timeCreated: 1518348767
+timeCreated: 1520777939
 licenseType: Free
 TextureImporter:
   fileIDToRecycleName:
@@ -235,9 +235,9 @@ TextureImporter:
     - name: Player_13
       rect:
         serializedVersion: 2
-        x: 244
+        x: 245
         y: 209
-        width: 33
+        width: 32
         height: 17
       alignment: 0
       pivot: {x: 0.5, y: 0.5}

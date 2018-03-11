@@ -66,9 +66,18 @@ public class PlayerController : MonoBehaviour {
 
     private Animator[] animators;
 
-
+    private bool isActive;
+    private bool isDead;
+    public float invincibilityTime;
+    public float inactivityTime;
+    private float invincCounter;
+    private float inactCounter;
+    public GameObject SpawnPoint;
+    private int flashing = 0;
+    public GameObject DeathEffect;
 
     void Start () {
+        transform.position = SpawnPoint.transform.position;
         currentProjectile = basicProjectile;
         animators = GetComponentsInChildren<Animator>();
         shootDelayCounter = 0;
@@ -78,8 +87,64 @@ public class PlayerController : MonoBehaviour {
         originColliderOffset = myColl.offset.y;
     }
 	
+
+    // Спавн
+    private void Spawn()
+    {
+        invincCounter = invincibilityTime;
+        rapidsPicked = 0;
+        currentProjectile = basicProjectile;
+        jumped = true;
+        vsp = 0.1f;
+    }
+
+    // Смерть
+    public void Death()
+    {
+        Instantiate(DeathEffect, transform.position, transform.rotation);
+        if (invincCounter > 0) return;
+        isDead = true;
+        isActive = false;
+        inactCounter = inactivityTime;
+        transform.position = SpawnPoint.transform.position;
+    }
+
 	void Update () {
-        CalculateBounds();
+
+        if(!isActive)
+        {
+            inactCounter -= Time.deltaTime;
+            if(inactCounter < 0)
+            {
+                isActive = true;
+                Spawn();
+            }
+            return;
+        }
+
+        SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer>();
+        if (invincCounter > 0)
+        {
+            invincCounter -= Time.deltaTime;
+            flashing++;
+            if (flashing > 15)
+            {
+               for (int i = 0; i < sprites.Length; i++)
+                {
+                    sprites[i].GetComponent<SpriteRenderer>().enabled = !sprites[i].GetComponent<SpriteRenderer>().enabled;
+                }
+                flashing = 0;
+            }
+        } else {
+            for (int i = 0; i < sprites.Length; i++)
+            {
+                sprites[i].GetComponent<SpriteRenderer>().enabled = true;
+            }
+            flashing = 0;
+        }
+        
+        
+            CalculateBounds();
         onGround = 
             CheckCollision(botLeft, Vector2.down, pixelSize, solid) || 
             CheckCollision(botRight, Vector2.down, pixelSize, solid) ||
