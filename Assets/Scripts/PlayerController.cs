@@ -102,11 +102,11 @@ public class PlayerController : MonoBehaviour {
     public void Death()
     {
         Instantiate(DeathEffect, transform.position, transform.rotation);
+        transform.position = SpawnPoint.transform.position;
         if (invincCounter > 0) return;
         isDead = true;
         isActive = false;
         inactCounter = inactivityTime;
-        transform.position = SpawnPoint.transform.position;
     }
 
 	void Update () {
