@@ -5,17 +5,22 @@ public class EnemyManager : MonoBehaviour {
 
     public int health;
     private int currentHealth;
+    public bool invinsible;
 
-    public GameObject deathEffect;
+    public GameObject deathEffectFirst;
+    public GameObject deathEffectSecond;
 
-	// Use this for initialization
-	void Start () {
+    // Use this for initialization
+    void Start () {
+        invinsible = false;
         currentHealth = health;
 	}
 	
     // Получить урон
     public void TakeDamage()
     {
+        if (invinsible) return;
+
         health--;
         if(health<=0)
         {
@@ -26,9 +31,13 @@ public class EnemyManager : MonoBehaviour {
     // Умереть
     public void Die()
     {
-        if(deathEffect != null)
+        if (deathEffectFirst != null)
         {
-            Instantiate(deathEffect, transform.position, transform.rotation);
+            Instantiate(deathEffectFirst, transform.position, transform.rotation);
+        }
+        if (deathEffectSecond != null)
+        {
+            Instantiate(deathEffectSecond, transform.position, transform.rotation);
         }
         Destroy(gameObject);
     }
