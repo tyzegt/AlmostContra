@@ -234,14 +234,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assets\Scripts\AngleChecker.cs" />
     <Compile Include="Assets\Scripts\CameraController.cs" />
     <Compile Include="Assets\Scripts\DestroyObjectOverTime.cs" />
     <Compile Include="Assets\Scripts\EnemyDeathEffect.cs" />
     <Compile Include="Assets\Scripts\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\EnemyRunner.cs" />
+    <Compile Include="Assets\Scripts\EnemyWallCannon.cs" />
     <Compile Include="Assets\Scripts\FlyingBarrel.cs" />
     <Compile Include="Assets\Scripts\FlyingBarrelTrigger.cs" />
     <Compile Include="Assets\Scripts\KillPlayerOnContact.cs" />
+    <Compile Include="Assets\Scripts\NewBehaviourScript.cs" />
     <Compile Include="Assets\Scripts\PlayerController.cs" />
     <Compile Include="Assets\Scripts\PlayerDeathEffect.cs" />
     <Compile Include="Assets\Scripts\PowerUp.cs" />
