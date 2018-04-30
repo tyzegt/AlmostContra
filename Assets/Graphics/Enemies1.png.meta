@@ -27,6 +27,7 @@ TextureImporter:
     21300040: Enemies1_20
     21300042: Enemies1_21
     21300044: Enemies1_22
+    21300046: Enemies1_23
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -411,6 +412,20 @@ TextureImporter:
         height: 13
       alignment: 9
       pivot: {x: 0.3618986, y: 0.4913424}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemies1_23
+      rect:
+        serializedVersion: 2
+        x: 227
+        y: 138
+        width: 3
+        height: 3
+      alignment: 0
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

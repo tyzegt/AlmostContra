@@ -239,6 +239,7 @@
     <Compile Include="Assets\Scripts\DestroyObjectOverTime.cs" />
     <Compile Include="Assets\Scripts\EnemyDeathEffect.cs" />
     <Compile Include="Assets\Scripts\EnemyManager.cs" />
+    <Compile Include="Assets\Scripts\EnemyProjectile.cs" />
     <Compile Include="Assets\Scripts\EnemyRunner.cs" />
     <Compile Include="Assets\Scripts\EnemyWallCannon.cs" />
     <Compile Include="Assets\Scripts\FlyingBarrel.cs" />
