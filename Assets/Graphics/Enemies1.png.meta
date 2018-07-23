@@ -28,6 +28,12 @@ TextureImporter:
     21300042: Enemies1_21
     21300044: Enemies1_22
     21300046: Enemies1_23
+    21300048: Enemies1_24
+    21300050: Enemies1_25
+    21300052: Enemies1_26
+    21300054: Enemies1_27
+    21300056: Enemies1_28
+    21300058: Enemies1_29
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -425,7 +431,91 @@ TextureImporter:
         width: 3
         height: 3
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemies1_24
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 331
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemies1_25
+      rect:
+        serializedVersion: 2
+        x: 303
+        y: 339
+        width: 25
+        height: 16
+      alignment: 9
+      pivot: {x: 0.33345947, y: 0.5210972}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemies1_26
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 331
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemies1_27
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 340
+        width: 32
+        height: 23
+      alignment: 9
+      pivot: {x: 0.49648333, y: 0.7690854}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemies1_28
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 354
+        width: 32
+        height: 9
+      alignment: 9
+      pivot: {x: 0.48945045, y: 1.9253404}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemies1_29
+      rect:
+        serializedVersion: 2
+        x: 228
+        y: 363
+        width: 32
+        height: 2
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
