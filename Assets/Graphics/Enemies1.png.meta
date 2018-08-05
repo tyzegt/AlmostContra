@@ -34,6 +34,9 @@ TextureImporter:
     21300054: Enemies1_27
     21300056: Enemies1_28
     21300058: Enemies1_29
+    21300060: Enemies1_30
+    21300062: Enemies1_31
+    21300064: Enemies1_32
   externalObjects: {}
   serializedVersion: 4
   mipmaps:
@@ -516,6 +519,48 @@ TextureImporter:
         height: 2
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemies1_30
+      rect:
+        serializedVersion: 2
+        x: 304
+        y: 569
+        width: 24
+        height: 32
+      alignment: 9
+      pivot: {x: 0.34115854, y: 0.5248184}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemies1_31
+      rect:
+        serializedVersion: 2
+        x: 258
+        y: 569
+        width: 18
+        height: 39
+      alignment: 9
+      pivot: {x: 0.3941057, y: 0.45112494}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+    - serializedVersion: 2
+      name: Enemies1_32
+      rect:
+        serializedVersion: 2
+        x: 212
+        y: 569
+        width: 24
+        height: 31
+      alignment: 9
+      pivot: {x: 0.35439554, y: 0.54611504}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

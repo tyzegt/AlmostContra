@@ -243,6 +243,7 @@
     <Compile Include="Assets\Scripts\EnemyManager.cs" />
     <Compile Include="Assets\Scripts\EnemyProjectile.cs" />
     <Compile Include="Assets\Scripts\EnemyRunner.cs" />
+    <Compile Include="Assets\Scripts\EnemySniperRegular.cs" />
     <Compile Include="Assets\Scripts\EnemyWallCannon.cs" />
     <Compile Include="Assets\Scripts\FlyingBarrel.cs" />
     <Compile Include="Assets\Scripts\FlyingBarrelTrigger.cs" />
