@@ -19,14 +19,22 @@ public class EnemyRunner : MonoBehaviour {
 
     private bool reacted;
 
+    bool isActive;
+
     // Use this for initialization
     void Start () {
         myBody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
 	}
+
+    void OnBecameVisible()
+    {
+        isActive = true;
+    }
 	
 	// Update is called once per frame
 	void Update () {
+        if (!isActive) return;
         onGround = Physics2D.OverlapCircle(groundSensor.position, 0.1f, ground);    // На земле ли
         cliffAhead = !Physics2D.OverlapCircle(cliffSensor.position, 0.1f, ground);  // есть ли впереди обрыв
 

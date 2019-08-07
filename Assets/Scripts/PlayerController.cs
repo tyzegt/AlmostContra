@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PlayerController : MonoBehaviour {
+public class PlayerController : MonoBehaviour
+{
 
     private GameObject currentProjectile;
     public GameObject basicProjectile;
@@ -39,11 +40,12 @@ public class PlayerController : MonoBehaviour {
 
     public LayerMask solid;
     public LayerMask oneway;
+    public LayerMask water;
 
     private float hsp;
     private float vsp;
     private float shootDelayCounter;
-    
+
     private bool KeyLeft;
     private bool KeyRight;
     private bool KeyUp;
@@ -53,6 +55,7 @@ public class PlayerController : MonoBehaviour {
     private bool KeyJumpOff;
 
     private bool onGround;
+    private bool onWater;
     private bool jumped;
     private bool moving;
     private bool onPlatform;
@@ -70,23 +73,24 @@ public class PlayerController : MonoBehaviour {
     private bool isDead;
     public float invincibilityTime;
     public float inactivityTime;
-    private float invincCounter;
+    public float invincCounter;
     private float inactCounter;
     public GameObject SpawnPoint;
     private int flashing = 0;
     public GameObject DeathEffect;
 
-    void Start () {
+    void Start()
+    {
         transform.position = SpawnPoint.transform.position;
         currentProjectile = basicProjectile;
         animators = GetComponentsInChildren<Animator>();
         shootDelayCounter = 0;
-        rot = new Quaternion(0,0,0,0);
+        rot = new Quaternion(0, 0, 0, 0);
         myColl = GetComponent<BoxCollider2D>();
         originColliderSize = myColl.size.y;
         originColliderOffset = myColl.offset.y;
     }
-	
+
 
     // Спавн
     private void Spawn()
@@ -101,26 +105,46 @@ public class PlayerController : MonoBehaviour {
     // Смерть
     public void Death()
     {
-        Instantiate(DeathEffect, transform.position, transform.rotation);
-        transform.position = SpawnPoint.transform.position;
+        if (KeyDown && onWater) return;
         if (invincCounter > 0) return;
+        Instantiate(DeathEffect, transform.position, transform.rotation);
+        transform.position = SpawnPoint.transform.position;        
         isDead = true;
         isActive = false;
         inactCounter = inactivityTime;
     }
 
-	void Update () {
+    void Update()
+    {
 
-        if(!isActive)
+        if (!isActive)
         {
             inactCounter -= Time.deltaTime;
-            if(inactCounter < 0)
+            if (inactCounter < 0)
             {
                 isActive = true;
                 Spawn();
             }
             return;
         }
+
+        
+
+
+        CalculateBounds();
+        onGround =
+            CheckCollision(botLeft, Vector2.down, pixelSize, solid) ||
+            CheckCollision(botRight, Vector2.down, pixelSize, solid) ||
+            CheckCollision(botLeft, Vector2.down, pixelSize, oneway) ||
+            CheckCollision(botRight, Vector2.down, pixelSize, oneway);
+        onWater =
+            CheckCollision(botLeft, Vector2.down, pixelSize, water) ||
+            CheckCollision(botRight, Vector2.down, pixelSize, water);
+        onPlatform =
+            CheckCollision(botLeft, Vector2.down, pixelSize, oneway) ||
+            CheckCollision(botRight, Vector2.down, pixelSize, oneway);
+
+
 
         SpriteRenderer[] sprites = GetComponentsInChildren<SpriteRenderer>();
         if (invincCounter > 0)
@@ -129,41 +153,42 @@ public class PlayerController : MonoBehaviour {
             flashing++;
             if (flashing > 15)
             {
-               for (int i = 0; i < sprites.Length; i++)
+                for (int i = 0; i < sprites.Length; i++)
                 {
                     sprites[i].GetComponent<SpriteRenderer>().enabled = !sprites[i].GetComponent<SpriteRenderer>().enabled;
+                    if (i == 2 && onWater) sprites[2].GetComponent<SpriteRenderer>().enabled = false;
+                    if (i == 3 && !onWater) sprites[3].GetComponent<SpriteRenderer>().enabled = false;
+                    if (i == 3 && onWater) sprites[3].GetComponent<SpriteRenderer>().enabled = enabled;
                 }
                 flashing = 0;
             }
-        } else {
+        }
+        else
+        {
             for (int i = 0; i < sprites.Length; i++)
             {
                 sprites[i].GetComponent<SpriteRenderer>().enabled = true;
+                if (i == 2 && onWater) sprites[2].GetComponent<SpriteRenderer>().enabled = false;
+                if (i == 2 && !onWater) sprites[2].GetComponent<SpriteRenderer>().enabled = true;
+                if (i == 3 && !onWater) sprites[3].GetComponent<SpriteRenderer>().enabled = false;
+                if (i == 3 && onWater) sprites[3].GetComponent<SpriteRenderer>().enabled = enabled;
             }
             flashing = 0;
         }
-        
-        
-            CalculateBounds();
-        onGround = 
-            CheckCollision(botLeft, Vector2.down, pixelSize, solid) || 
-            CheckCollision(botRight, Vector2.down, pixelSize, solid) ||
-            CheckCollision(botLeft, Vector2.down, pixelSize, oneway) ||
-            CheckCollision(botRight, Vector2.down, pixelSize, oneway);
-        onPlatform = 
-            CheckCollision(botLeft, Vector2.down, pixelSize, oneway) ||
-            CheckCollision(botRight, Vector2.down, pixelSize, oneway);
+
+
 
         obsticleOnRight = CheckCollision(topRight, Vector2.right, pixelSize, solid) || CheckCollision(botRight, Vector2.right, pixelSize, solid);
         obsticleOnLeft = CheckCollision(topLeft, Vector2.left, pixelSize, solid) || CheckCollision(botLeft, Vector2.left, pixelSize, solid);
 
         GetInput();
 
-        if(onGround && KeyDown)
+        if (onGround && KeyDown)
         {
             myColl.size = new Vector2(myColl.size.x, duckColliderSize);
             myColl.offset = new Vector2(myColl.offset.x, duckColliderOffset);
-        } else
+        }
+        else
         {
             myColl.size = new Vector2(myColl.size.x, originColliderSize);
             myColl.offset = new Vector2(myColl.offset.x, originColliderOffset);
@@ -176,9 +201,9 @@ public class PlayerController : MonoBehaviour {
         Animate();
         Move();
         Shoot();
-	}
+    }
 
-    void GetInput ()
+    void GetInput()
     {
         KeyLeft = Input.GetKey(KeyCode.LeftArrow);
         KeyRight = Input.GetKey(KeyCode.RightArrow);
@@ -209,7 +234,7 @@ public class PlayerController : MonoBehaviour {
             moving = false;
             hsp = 0;
         }
-        
+
 
         // спрыгиваем с платформы
         if (onPlatform && KeyJumpOff)
@@ -221,20 +246,21 @@ public class PlayerController : MonoBehaviour {
         if (KeyJump && onGround)
         {
             jumped = true;
-            vsp = jumpHeight;
+            if(!onWater) vsp = jumpHeight;
+            else vsp = jumpHeight* 0.7f;
             onGround = false;
         }
 
         if (!onGround) vsp -= gravity * Time.deltaTime;
 
         // проверяем пол под ногами
-        if((vsp < 0) && (CheckCollision(botLeft, Vector2.down, Mathf.Abs(vsp), solid) || CheckCollision(botRight, Vector2.down, Mathf.Abs(vsp), solid)))
+        if ((vsp < 0) && (CheckCollision(botLeft, Vector2.down, Mathf.Abs(vsp), solid) || CheckCollision(botRight, Vector2.down, Mathf.Abs(vsp), solid)))
         {
             float dist1 = CheckCollisionDistance(botLeft, Vector2.down, Mathf.Abs(vsp), solid);
             float dist2 = CheckCollisionDistance(botRight, Vector2.down, Mathf.Abs(vsp), solid);
             if (dist1 <= dist2) vsp = -dist1;
             else vsp = -dist2;
-            transform.position = new Vector2(transform.position.x, transform.position.y + vsp + pixelSize/2);
+            transform.position = new Vector2(transform.position.x, transform.position.y + vsp + pixelSize / 2);
             vsp = 0;
         }
         // проверяем платформу под ногами
@@ -248,7 +274,7 @@ public class PlayerController : MonoBehaviour {
             vsp = 0;
         }
 
-        
+
 
         // проверяем потолок
         if ((vsp > 0) && (CheckCollision(topLeft, Vector2.up, vsp, solid) || CheckCollision(topRight, Vector2.up, vsp, solid)))
@@ -292,9 +318,10 @@ public class PlayerController : MonoBehaviour {
     // Стрельба
     private void Shoot()
     {
-        if(KeyAction && shootDelayCounter <= 0)
+        if (KeyDown && onWater) return;
+        if (KeyAction && shootDelayCounter <= 0)
         {
-            if((currentProjectile == basicProjectile) && FindObjectsOfType<Projectile>().Length < 4)
+            if ((currentProjectile == basicProjectile) && FindObjectsOfType<Projectile>().Length < 4)
             {
                 Instantiate(currentProjectile, currentShootPoint.position, rot);
                 shootDelayCounter = shootDelay;
@@ -317,7 +344,7 @@ public class PlayerController : MonoBehaviour {
             if (currentProjectile == ProjectileL)
             {
                 Projectile[] projectile = FindObjectsOfType<Projectile>();
-                foreach(Projectile p in projectile)
+                foreach (Projectile p in projectile)
                 {
                     Destroy(p.gameObject);
                 }
@@ -340,8 +367,9 @@ public class PlayerController : MonoBehaviour {
         if (KeyUp && !KeyRight && !KeyLeft && !KeyDown)
         {
             direction = 8;
-        } else if (jumped && KeyDown && !KeyRight && !KeyLeft) direction = 2;
-        else if(transform.localScale.x > 0)
+        }
+        else if (jumped && KeyDown && !KeyRight && !KeyLeft) direction = 2;
+        else if (transform.localScale.x > 0)
         {
             if (KeyUp && KeyRight) direction = 9;
             else if (KeyDown && KeyRight) direction = 3;
@@ -384,7 +412,7 @@ public class PlayerController : MonoBehaviour {
     }
 
     // Проверка столкновения
-    private bool CheckCollision(Vector2 raycastOrigin,Vector2 direction, float distance, LayerMask layer)
+    private bool CheckCollision(Vector2 raycastOrigin, Vector2 direction, float distance, LayerMask layer)
     {
         return Physics2D.Raycast(raycastOrigin, direction, distance, layer);
     }
@@ -393,7 +421,7 @@ public class PlayerController : MonoBehaviour {
     private float CheckCollisionDistance(Vector2 raycastOrigin, Vector2 direction, float distance, LayerMask layer)
     {
         int i = 0;
-        while(Physics2D.Raycast(raycastOrigin, direction, distance, layer))
+        while (Physics2D.Raycast(raycastOrigin, direction, distance, layer))
         {
             i++;
 
@@ -418,7 +446,7 @@ public class PlayerController : MonoBehaviour {
     // Анимация
     private void Animate()
     {
-        for(int i=0; i<animators.Length; i++)
+        for (int i = 0; i < 2; i++)
         {
             animators[i].SetBool("OnGround", onGround);
             animators[i].SetBool("Jumped", jumped);

@@ -8,7 +8,7 @@ public class FlyingBarrelTrigger : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.tag == "Player")
+        if (other.tag == "Player" && barrel != null)
         {
             barrel.GetComponent<FlyingBarrel>().y = transform.position.y;
             barrel.GetComponent<FlyingBarrel>().Activate();
@@ -22,6 +22,6 @@ public class FlyingBarrelTrigger : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
+        if (barrel == null) Destroy(gameObject);
 	}
 }

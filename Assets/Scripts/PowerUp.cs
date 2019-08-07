@@ -16,6 +16,7 @@ public class PowerUp : MonoBehaviour {
     void Start()
     {
         GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.up * height, ForceMode2D.Impulse);
+        GetComponent<Rigidbody2D>().AddRelativeForce(Vector2.right * 2, ForceMode2D.Impulse);
     }
 
 	void OnTriggerEnter2D(Collider2D other)
